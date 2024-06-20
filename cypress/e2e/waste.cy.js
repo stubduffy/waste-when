@@ -1,20 +1,10 @@
-function callGithub(text) {
-  cy.request({
-    method: 'POST',
-    url: '/login_with_form',
-    body: {
-      username: 'jane.lane',
-      password: 'password123',
-    },
-  })
-}
 
 describe('template spec', () => {
   it('passes', () => {
     cy.visit('https://www.stadtreinigung.hamburg/abfuhrkalender/')
-    cy.findByPlaceholderText('Straße').type('Fünfhausener Straße')
-    cy.contains('Fünfhausener Straße').click()
-    cy.get('[data-options-name=housenumbers]').select('68')
+    cy.findByPlaceholderText('Straße').type(Cypress.env('STREET'))
+    cy.contains(Cypress.env('STREET')).click()
+    cy.get('[data-options-name=housenumbers]').select(Cypress.env('HOUSENUM'))
     cy.get('input[name="tx_srh_pickups[isAllowedOwner]"]').check()
     cy.contains('Termine suchen').click()
     cy.get('tr').then(($rows) => {

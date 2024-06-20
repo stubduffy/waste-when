@@ -15,6 +15,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+        env:
+          CYPRESS_STREET: ${{ secrets.STREET }}
+          CYPRESS_HOUSENUM: ${{ secrets.HOUSENUM }}
       - uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
