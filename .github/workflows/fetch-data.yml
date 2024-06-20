@@ -14,6 +14,7 @@ jobs:
       - name: install node deps
         run: |
           npm install
+          npx cypress install
       - name: run tests
         run: |
           npx cypress run --browser chrome
