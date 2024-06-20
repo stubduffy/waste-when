@@ -18,4 +18,11 @@ jobs:
         with:
           name: cypress-screenshots
           path: cypress/screenshots/
+      - name: push to main
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: main
+          commit_message: 'Auto update calendar'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Require
  
