@@ -1,0 +1,48 @@
+name: Fetch new data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"   # <=== Change this value
+
+jobs:
+  fetch-new-data:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: install node deps
+        run: |
+          npm install
+          npx cypress install
+      - name: run cypress
+        run: |
+          npx cypress run --browser chrome > /dev/null
+        env:
+          CYPRESS_STREET: ${{ secrets.STREET }}
+          CYPRESS_HOUSENUM: ${{ secrets.HOUSENUM }}
+      - name: push to main
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: main
+          commit_message: 'Auto update calendar'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: update readme permalinks
+        run: |
+          echo "## When is my waste being collected?
+            https://github.com/stubduffy/waste-when/blob/$(git rev-parse HEAD)/cal.json#L1-L6
+            
+            ### how it works
+            - opens the hamburg Abfuhrkalendar on a daily basis, and fills in my details to see the latest dates
+            - grabs the relevant dates and stores them
+            - pushes the update back to this repo
+            " > README.md
+      - name: push to main
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: main
+          commit_message: 'Auto update readme'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
