@@ -22,7 +22,6 @@ describe('template spec', () => {
         console.log(row.innerText.replace(/ /g,''))
         console.log(row.innerText.replace(/ /g,'').split("\n\n"))
         // Do 20. Juni 2024\n\nBlaue Papiertonne\n\nalle 4 Wochen
-        debugger
       }
     })
   })
