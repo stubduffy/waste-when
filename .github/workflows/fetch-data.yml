@@ -2,6 +2,8 @@ name: Fetch new data
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"   # <=== Change this value
 
 jobs:
   fetch-new-data:
