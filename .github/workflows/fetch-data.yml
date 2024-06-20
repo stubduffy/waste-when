@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-tests:
+  fetch-new-data:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -24,5 +24,15 @@ jobs:
           branch: main
           commit_message: 'Auto update calendar'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Require
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: update readme permalinks
+        run: |
+          echo "https://github.com/stubduffy/waste-when/blob/$(git rev-parse HEAD)/cal.json#L1-L6" > README.md
+      - name: push to main
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: main
+          commit_message: 'Auto update readme'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
