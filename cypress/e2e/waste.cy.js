@@ -2,9 +2,9 @@
 describe('template spec', () => {
   it('passes', () => {
     cy.visit('https://www.stadtreinigung.hamburg/abfuhrkalender/')
-    cy.findByPlaceholderText('Straße').type(Cypress.env('STREET'))
+    cy.findByPlaceholderText('Straße').type(Cypress.env('STREET')).tab()
     cy.contains(Cypress.env('STREET')).click()
-    cy.get('[data-options-name=housenumbers]').select(Cypress.env('HOUSENUM'))
+    cy.get('[data-options-name=housenumbers]').select(Cypress.env('HOUSENUM').toString())
     cy.get('input[name="tx_srh_pickups[isAllowedOwner]"]').check()
     cy.contains('Termine suchen').click()
     cy.get('tr').then(($rows) => {
