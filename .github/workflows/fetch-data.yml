@@ -11,10 +11,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
+      - name: install node deps
+        run: |
+          npm install
+      - name: run tests
+        run: |
+          npx cypress run --browser chrome
         env:
           CYPRESS_STREET: ${{ secrets.STREET }}
           CYPRESS_HOUSENUM: ${{ secrets.HOUSENUM }}
