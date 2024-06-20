@@ -19,8 +19,8 @@ jobs:
         run: |
           npx cypress run --browser chrome
         env:
-          CYPRESS_STREET: ${{ secrets.STREET }}
-          CYPRESS_HOUSENUM: ${{ secrets.HOUSENUM }}
+          CYPRESS_STREET: ${{ vars.STREET }}
+          CYPRESS_HOUSENUM: ${{ vars.HOUSENUM }}
       - uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
