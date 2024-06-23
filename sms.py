@@ -63,7 +63,7 @@ with open('cal.json') as file:
         now = datetime.now()
 
         days_left = (dt - now).days
-        if (days_left == 0):
+        if (days_left == 1):
             print("%s-müll tomorrow... publishing notification!" % key)
             publish_sms("" + key + "-müll collection tomorrow!!")
         else:
