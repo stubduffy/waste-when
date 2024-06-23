@@ -25,7 +25,7 @@ jobs:
       - name: install Python dependencies
         run: pip3 install -r requirements.txt
 
-      - name: run tests
+      - name: send-notification-if-time
         run: |
           python3 sms.py
         env:
