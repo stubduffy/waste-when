@@ -52,10 +52,9 @@ with open('cal.json') as file:
     for key in cal.keys():
         print(cal[key])
         split1 = re.split(r'\.', cal[key])
-        split2 = re.split(r'[^0-9]+', split1[0])[1]
-        split3 = re.split(r'\d+', split1[1])[0]
-        split4 = re.split(r'[^0-9]+', split1[1])[1]
-        day = int(split2)
+        split3 = re.split(r'\d+', split1[2])[0]
+        split4 = re.split(r'[^0-9]+', split1[2])[1]
+        day = int(split1[1])
         month = month_string_to_int(split3)
         year = int(split4)
         dt = datetime(day=day, month=month, year=year)
