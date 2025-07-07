@@ -51,12 +51,14 @@ with open('cal.json') as file:
     cal = json.loads(file_contents)
     for key in cal.keys():
         print(cal[key])
-        split1 = re.split(r'\.', cal[key])
-        split3 = re.split(r'\d+', split1[2])[0]
-        split4 = re.split(r'[^0-9]+', split1[2])[1]
-        day = int(split1[1])
-        month = month_string_to_int(split3)
-        year = int(split4)
+        matcher = re.compile('.*(\d+)\.(\D+)(\d\d\d\d)')
+        m = matcher.match(cal[key])
+        if m:
+            day = int(m.groups(0))
+            month = month_string_to_int(m.groups(1))
+            year = int(m.groups(2))
+        else:
+            raise Exception("Sorry, couldnt decipher the date string")
         dt = datetime(day=day, month=month, year=year)
         print(dt)
         now = datetime.now()
