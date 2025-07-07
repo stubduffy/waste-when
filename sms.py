@@ -54,9 +54,9 @@ with open('cal.json') as file:
         matcher = re.compile('.*(\d+)\.(\D+)(\d\d\d\d)')
         m = matcher.match(cal[key])
         if m:
-            day = int(m.groups(0))
-            month = month_string_to_int(m.groups(1))
-            year = int(m.groups(2))
+            day = int(m.groups()[0])
+            month = month_string_to_int(m.groups()[1])
+            year = int(m.groups()[2])
         else:
             raise Exception("Sorry, couldnt decipher the date string")
         dt = datetime(day=day, month=month, year=year)
