@@ -51,7 +51,7 @@ with open('cal.json') as file:
     cal = json.loads(file_contents)
     for key in cal.keys():
         print(cal[key])
-        matcher = re.compile('.*(\d+)\.(\D+)(\d\d\d\d)')
+        matcher = re.compile('\D+(\d+)\.(\D+)(\d\d\d\d)')
         m = matcher.match(cal[key])
         if m:
             day = int(m.groups()[0])
