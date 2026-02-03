@@ -1,5 +1,5 @@
 ## When is my waste being collected?
-  https://github.com/stubduffy/waste-when/blob/319dc35068069a451f5f768cb72a65f6767616c6/cal.json#L1-L6
+  https://github.com/stubduffy/waste-when/blob/372834cea994db4a14ad00d4032c64af6172e8dd/cal.json#L1-L6
   
   ### how it works
   - opens the hamburg Abfuhrkalendar on a daily basis, and fills in my details to see the latest dates
